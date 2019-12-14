@@ -7,8 +7,21 @@ import java.net.Socket;
 
 public class Driver 
 {
-	public static void main(String[] args)
+	public static void main(String[] args) throws Exception
 	{
+		//FileStringBuilder fsb = new FileStringBuilder("index.html");
+		//System.out.println(fsb.getFileString());
+		
+		ServerSocket listenner = new ServerSocket(8080);
+		while(true)
+		{
+			System.out.println("listenning");
+			Socket s = listenner.accept();
+			(new MyThread(s)).start();
+		}
+		
+		
+		/*
 		try 
 		{
 			ServerSocket listenner = new ServerSocket(8080);
@@ -22,11 +35,13 @@ public class Driver
 			
 			PrintStream writer = new PrintStream(output);
 			writer.println("Welcome!!!!");
+			writer.flush();
 		} 
 		catch (IOException e) 
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 	}
 }
